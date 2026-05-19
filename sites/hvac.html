@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PolarPeak — HVAC, done right.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--ink:#0a1628;--ink-2:#16263d;--sky:#3b82f6;--ice:#7dd3fc;--ember:#fb923c;--paper:#f8fafc;--mute:#64748b;--line:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper);color:var(--ink);font:14px/1.55 "Space Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"JetBrains Mono",monospace}
+a{color:inherit;text-decoration:none}
+
+/* alert bar */
+.alert{background:var(--ember);color:#1a0f00;font-size:12px;padding:8px 22px;text-align:center;font-weight:500;letter-spacing:.01em}
+.alert b{font-weight:700}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(248,250,252,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;letter-spacing:-.01em}
+.logo-mk{width:26px;height:26px;border-radius:7px;background:var(--ink);display:grid;place-items:center;color:var(--ice)}
+.nav-links{display:flex;gap:20px;font-size:13px;color:var(--mute)}
+.nav-cta{background:var(--ink);color:var(--paper);padding:9px 14px;border-radius:8px;font-size:12.5px;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+
+/* hero */
+.hero{padding:56px 22px 44px;background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,var(--sky) 0%,transparent 60%);opacity:.55;filter:blur(20px)}
+.hero::after{content:"";position:absolute;bottom:-150px;left:-100px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,var(--ember) 0%,transparent 60%);opacity:.4;filter:blur(20px)}
+.hero-in{position:relative;z-index:2;max-width:780px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:6px;background:rgba(125,211,252,.15);color:var(--ice);font-size:11.5px;font-weight:500;border:1px solid rgba(125,211,252,.3);margin-bottom:18px}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e}
+.hero h1{font-size:clamp(38px,7.5vw,72px);line-height:.95;letter-spacing:-.035em;font-weight:700}
+.hero h1 .acc{color:var(--ice)}
+.hero p.sub{margin-top:18px;color:rgba(248,250,252,.7);font-size:15px;max-width:48ch}
+.hero-cta{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:13px 20px;border-radius:8px;font-size:13.5px;font-weight:500;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:0;font-family:inherit}
+.btn-pri{background:var(--ember);color:#1a0f00}
+.btn-pri:hover{filter:brightness(1.05)}
+.btn-ghost{background:transparent;border:1px solid rgba(248,250,252,.25);color:var(--paper)}
+
+.live-strip{margin-top:34px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;padding-top:24px;border-top:1px solid rgba(248,250,252,.12)}
+.live{display:flex;flex-direction:column;gap:4px}
+.live .l{font-size:11px;color:rgba(248,250,252,.55);letter-spacing:.06em;text-transform:uppercase}
+.live .n{font-size:20px;font-weight:600}
+.live .n.acc{color:var(--ice)}
+
+/* services as a table */
+.section{padding:48px 22px}
+.eye{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:10px}
+.section h2{font-size:clamp(28px,4.4vw,44px);line-height:1;letter-spacing:-.025em;font-weight:600;margin-bottom:28px;max-width:20ch}
+
+.svc-list{border-top:1px solid var(--line)}
+.svc-row{display:grid;grid-template-columns:80px 1.4fr 1fr auto;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);transition:background .2s,padding .2s}
+.svc-row:hover{background:#fff;padding-left:8px;padding-right:8px}
+.svc-row .num{font-family:"JetBrains Mono",monospace;color:var(--mute);font-size:13px}
+.svc-row h3{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.svc-row p{font-size:13px;color:var(--mute)}
+.svc-row .price{font-size:13.5px;font-weight:500;color:var(--ink);white-space:nowrap}
+
+/* warranty card */
+.warranty{padding:0 22px}
+.war-card{background:linear-gradient(135deg,var(--ink) 0%,var(--ink-2) 100%);color:var(--paper);border-radius:18px;padding:32px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;position:relative;overflow:hidden}
+.war-card::after{content:"";position:absolute;right:-50px;top:-50px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,var(--sky),transparent 70%);opacity:.5}
+.war-shield{width:60px;height:60px;border-radius:14px;background:rgba(125,211,252,.15);display:grid;place-items:center;color:var(--ice);border:1px solid rgba(125,211,252,.3);position:relative;z-index:2}
+.war-card h3{font-size:22px;font-weight:600;letter-spacing:-.015em}
+.war-card p{font-size:13px;color:rgba(248,250,252,.7);margin-top:4px}
+.war-badge{position:relative;z-index:2;font-family:"JetBrains Mono",monospace;font-size:11px;padding:6px 10px;border-radius:6px;background:rgba(248,250,252,.1);border:1px solid rgba(248,250,252,.15)}
+
+/* booking */
+.book{padding:48px 22px}
+.book-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.book-card h3{font-size:28px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
+.book-card .price-tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;padding:4px 8px;border-radius:5px;background:#dcfce7;color:#166534;margin-bottom:14px}
+.book-form{display:flex;flex-direction:column;gap:10px}
+.book-form label{font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.book-form input,.book-form select{padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:var(--paper);font:inherit;color:inherit}
+.book-form input:focus,.book-form select:focus{outline:2px solid var(--sky);outline-offset:1px}
+
+footer{padding:32px 22px;color:var(--mute);font-size:12px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px}
+
+@media(max-width:600px){
+  .book-card{grid-template-columns:1fr}
+  .svc-row{grid-template-columns:1fr;gap:6px}
+  .war-card{grid-template-columns:1fr;text-align:left}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="alert">⚡ <b>24/7 Emergency Service</b> — no overtime fees, ever · (555) 412-8800</div>
+
+<nav class="nav">
+  <a class="logo">
+    <span class="logo-mk">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1L10 6h5l-4 3 1.5 5L8 11.5 3.5 14 5 9 1 6h5z" fill="currentColor"/></svg>
+    </span>
+    PolarPeak HVAC
+  </a>
+  <div class="nav-links"><a>Heating</a><a>Cooling</a><a>Maintenance</a><a>Reviews</a></div>
+  <a class="nav-cta">Book service</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-in">
+    <span class="tag">Open now · techs near you</span>
+    <h1>Fix it once.<br>Fix it <span class="acc">right.</span></h1>
+    <p class="sub">PolarPeak technicians install, repair, and service heating &amp; cooling for 14,000 homes across the Front Range. Up-front pricing. Same-day appointments.</p>
+    <div class="hero-cta">
+      <button class="btn btn-pri">Book a tech today
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8m0 0L7 3m3 3L7 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="btn btn-ghost">$89 tune-up special</button>
+    </div>
+    <div class="live-strip">
+      <div class="live"><span class="l">Avg arrival</span><span class="n acc">47 min</span></div>
+      <div class="live"><span class="l">Same-day calls</span><span class="n">98.2%</span></div>
+      <div class="live"><span class="l">Licensed techs</span><span class="n">42</span></div>
+      <div class="live"><span class="l">Five-star reviews</span><span class="n">2,381</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eye">— Services</div>
+  <h2>Every system. Every brand. Every season.</h2>
+  <div class="svc-list">
+    <div class="svc-row">
+      <span class="num">/01</span>
+      <div><h3>AC Installation &amp; Replacement</h3></div>
+      <p>High-efficiency systems sized to your home. Financing as low as $0 down.</p>
+      <span class="price">from $4,200</span>
+    </div>
+    <div class="svc-row">
+      <span class="num">/02</span>
+      <div><h3>Furnace Repair</h3></div>
+      <p>Most repairs done same visit. Truck stocked with 800+ parts.</p>
+      <span class="price">$89 diagnostic</span>
+    </div>
+    <div class="svc-row">
+      <span class="num">/03</span>
+      <div><h3>Heat Pump Conversions</h3></div>
+      <p>Includes rebate paperwork. Save $1,200–$3,500 in tax credits.</p>
+      <span class="price">free consult</span>
+    </div>
+    <div class="svc-row">
+      <span class="num">/04</span>
+      <div><h3>Annual Maintenance Plan</h3></div>
+      <p>Two visits a year, priority scheduling, 15% off repairs.</p>
+      <span class="price">$18 / mo</span>
+    </div>
+    <div class="svc-row">
+      <span class="num">/05</span>
+      <div><h3>Indoor Air Quality</h3></div>
+      <p>Filters, UV lights, whole-home humidifiers. Independent testing first.</p>
+      <span class="price">from $280</span>
+    </div>
+  </div>
+</section>
+
+<div class="warranty">
+  <div class="war-card">
+    <div class="war-shield">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div>
+      <h3>The PolarPeak Promise</h3>
+      <p>10-year warranty on parts &amp; labor. If we install it and it breaks, we fix it free — period.</p>
+    </div>
+    <span class="war-badge">10-YEAR · NO FINE PRINT</span>
+  </div>
+</div>
+
+<section class="book">
+  <div class="book-card">
+    <div>
+      <div class="eye">— Schedule</div>
+      <h3>Book a service window.</h3>
+      <span class="price-tag">$89 DIAGNOSTIC · WAIVED IF YOU PROCEED</span>
+      <p style="color:var(--mute);font-size:13px;margin-top:8px">Most appointments confirmed in under 20 minutes. We text — never call unless you ask.</p>
+    </div>
+    <form class="book-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ Booked — check your phone'">
+      <div>
+        <label>System type</label>
+        <select><option>AC repair</option><option>Furnace repair</option><option>New install / replacement</option><option>Annual tune-up</option></select>
+      </div>
+      <div>
+        <label>Address</label>
+        <input placeholder="123 Main St, Denver CO">
+      </div>
+      <div>
+        <label>Mobile</label>
+        <input placeholder="(555) 555-5555">
+      </div>
+      <button class="btn btn-pri" type="submit" style="margin-top:8px">Confirm appointment →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>PolarPeak HVAC · License #HV-29841 · Denver, CO</span>
+  <span>© 2026 · (555) 412-8800</span>
+</footer>
+
+</body>
+</html>

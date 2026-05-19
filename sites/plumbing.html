@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rivet &amp; Pipe — Plumbing &amp; Drains</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{--navy:#0d1b2a;--navy-2:#1b263b;--copper:#c2410c;--copper-2:#ea580c;--cream:#fefcf7;--ink:#1a202c;--mute:#64748b;--line:#e7e2d8}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--cream);color:var(--ink);font:14px/1.55 "Manrope",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.serif{font-family:"Fraunces",serif;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+
+/* top bar */
+.bar{background:var(--navy);color:var(--cream);font-size:11.5px;padding:7px 22px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.bar .l{display:flex;gap:18px;align-items:center}
+.bar .l span{display:inline-flex;align-items:center;gap:6px}
+.bar .badge{padding:2px 8px;border-radius:4px;background:var(--copper);font-weight:600;font-size:10.5px;letter-spacing:.04em}
+
+/* nav */
+.nav{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;background:var(--cream);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.logo .mk{width:30px;height:30px;border-radius:50%;background:var(--navy);display:grid;place-items:center;color:var(--copper)}
+.logo .mk svg{width:16px;height:16px}
+.logo i{font-style:normal;color:var(--copper)}
+.nav-links{display:flex;gap:22px;font-size:13px;color:var(--navy);font-weight:500}
+.nav-cta{background:var(--copper);color:var(--cream);padding:10px 16px;border-radius:6px;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+
+/* hero */
+.hero{padding:60px 22px 44px;background:
+  radial-gradient(70% 50% at 100% 0%, rgba(194,65,12,.1), transparent 60%),
+  var(--cream);
+  position:relative}
+.hero-grid{display:grid;grid-template-columns:1.3fr .85fr;gap:36px;align-items:center}
+.hero h1{font-size:clamp(40px,7vw,76px);line-height:.95;font-weight:500;text-wrap:balance}
+.hero h1 em{font-style:italic;color:var(--copper);font-weight:400}
+.hero p.sub{margin-top:20px;color:var(--mute);font-size:15.5px;max-width:46ch;line-height:1.55}
+.tag{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:4px;background:var(--navy);color:var(--cream);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--copper)}
+.hero-cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:14px 22px;border-radius:6px;font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:0;font-family:inherit}
+.btn-pri{background:var(--copper);color:var(--cream)}
+.btn-out{background:transparent;border:1.5px solid var(--navy);color:var(--navy)}
+
+/* hero card */
+.urgent{background:var(--navy);color:var(--cream);border-radius:14px;padding:24px;position:relative;overflow:hidden}
+.urgent::after{content:"";position:absolute;bottom:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,var(--copper),transparent 70%);opacity:.35}
+.urgent .head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.urgent .pulse{width:10px;height:10px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 0 #ef4444;animation:pulse 1.5s ease-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(239,68,68,0)}}
+.urgent h4{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--copper-2)}
+.urgent .big{font-family:"Fraunces",serif;font-size:34px;line-height:1.05;letter-spacing:-.02em;margin-bottom:10px;font-weight:500;position:relative;z-index:1}
+.urgent ul{list-style:none;font-size:13px;display:flex;flex-direction:column;gap:6px;color:rgba(254,252,247,.85);position:relative;z-index:1}
+.urgent ul li::before{content:"✓";color:var(--copper-2);font-weight:700;margin-right:8px}
+.urgent .call{margin-top:18px;background:var(--copper);color:var(--cream);padding:12px;border-radius:8px;text-align:center;font-weight:700;font-size:18px;letter-spacing:-.01em;display:block;position:relative;z-index:1}
+
+/* services */
+.section{padding:52px 22px}
+.eye{display:inline-block;font-family:"Fraunces",serif;font-style:italic;font-size:14px;color:var(--copper);margin-bottom:10px}
+.section h2{font-family:"Fraunces",serif;font-size:clamp(28px,4.6vw,46px);line-height:1;letter-spacing:-.02em;margin-bottom:30px;font-weight:500;max-width:18ch}
+
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.svc-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.svc-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(13,27,42,.25);border-color:var(--copper)}
+.svc-card .num{position:absolute;top:18px;right:22px;font-family:"Fraunces",serif;font-style:italic;color:var(--copper);font-size:14px}
+.svc-card .ico{width:48px;height:48px;border-radius:10px;background:var(--cream);border:1px solid var(--line);display:grid;place-items:center;margin-bottom:16px;color:var(--navy)}
+.svc-card h3{font-family:"Fraunces",serif;font-size:20px;font-weight:500;margin-bottom:6px}
+.svc-card p{font-size:13px;color:var(--mute);line-height:1.55}
+
+/* process */
+.process{background:var(--navy);color:var(--cream);padding:52px 22px}
+.process h2{color:var(--cream);font-family:"Fraunces",serif;font-size:clamp(28px,4.6vw,42px);font-weight:500;margin-bottom:28px;letter-spacing:-.02em}
+.process .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:22px}
+.step{position:relative;padding-top:18px}
+.step::before{content:"";position:absolute;top:0;left:0;width:36px;height:2px;background:var(--copper)}
+.step .n{font-family:"Fraunces",serif;font-style:italic;color:var(--copper-2);font-size:16px;margin-bottom:6px}
+.step h4{font-size:17px;font-weight:600;margin-bottom:6px}
+.step p{font-size:13px;color:rgba(254,252,247,.7);line-height:1.5}
+
+/* form */
+.form-sec{padding:52px 22px}
+.form-card{background:var(--cream);border:1.5px solid var(--navy);border-radius:14px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.form-card h3{font-family:"Fraunces",serif;font-size:30px;font-weight:500;letter-spacing:-.02em;margin-bottom:10px}
+.form-card .copy p{color:var(--mute);font-size:14px;margin-bottom:10px}
+.form-card .copy .stats{display:flex;gap:24px;margin-top:18px}
+.form-card .copy .stats div{display:flex;flex-direction:column}
+.form-card .copy .stats .n{font-family:"Fraunces",serif;font-size:30px;color:var(--copper);font-weight:500}
+.form-card .copy .stats .l{font-size:11.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.f-grid{display:flex;flex-direction:column;gap:10px}
+.f-grid label{font-size:11.5px;color:var(--navy);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.f-grid input,.f-grid select,.f-grid textarea{padding:13px 14px;border-radius:7px;border:1px solid var(--line);background:#fff;font:inherit;color:inherit}
+.f-grid input:focus,.f-grid select:focus,.f-grid textarea:focus{outline:2px solid var(--copper);outline-offset:1px}
+
+footer{padding:32px 22px;background:var(--navy);color:rgba(254,252,247,.55);font-size:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer .logo{color:var(--cream);font-size:14px}
+
+@media(max-width:680px){
+  .hero-grid{grid-template-columns:1fr}
+  .form-card{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="l">
+    <span><span class="badge">24/7</span> Emergency line open</span>
+    <span>📞 (555) 270-1944</span>
+  </div>
+  <span>Licensed · Bonded · Insured · #PL-0287</span>
+</div>
+
+<nav class="nav">
+  <a class="logo">
+    <span class="mk">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 2v8a3 3 0 003 3h6a3 3 0 003-3V2M9 18v4M15 18v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </span>
+    Rivet <i>&amp;</i> Pipe
+  </a>
+  <div class="nav-links"><a>Services</a><a>Drains</a><a>Water Heaters</a><a>Reviews</a><a>Contact</a></div>
+  <a class="nav-cta">Schedule now →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <span class="tag">Third generation · Since 1962</span>
+      <h1 class="serif">The plumber<br>your <em>grandmother</em><br>recommended.</h1>
+      <p class="sub">Family-run plumbing for the Pacific Northwest. We dig the trenches, snake the lines, and clean up after ourselves. Flat-rate pricing — no hourly surprises.</p>
+      <div class="hero-cta">
+        <button class="btn btn-pri">Get a quote
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8m0 0L7 3m3 3L7 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button class="btn btn-out">See pricing</button>
+      </div>
+    </div>
+
+    <aside class="urgent">
+      <div class="head">
+        <span class="pulse"></span>
+        <h4>Emergency · 24 / 7</h4>
+      </div>
+      <p class="big serif">Burst pipe?<br>We're 35 min away.</p>
+      <ul>
+        <li>No after-hours surcharge</li>
+        <li>Stocked trucks · 600+ parts</li>
+        <li>Up-front flat quote before work</li>
+      </ul>
+      <a class="call">Call (555) 270-1944</a>
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <p class="eye">Services we provide</p>
+  <h2>From hairline leaks to sewer mains.</h2>
+  <div class="svc">
+    <div class="svc-card">
+      <span class="num">01</span>
+      <div class="ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2c0 4-4 6-4 11a4 4 0 008 0c0-5-4-7-4-11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Leak Detection</h3>
+      <p>Acoustic + thermal imaging finds the leak without tearing up your walls.</p>
+    </div>
+    <div class="svc-card">
+      <span class="num">02</span>
+      <div class="ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M4 14h16M12 3a14 14 0 010 18M12 3a14 14 0 000 18" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <h3>Drain Cleaning</h3>
+      <p>Hydro-jetting clears roots, grease, and 60 years of mystery grime.</p>
+    </div>
+    <div class="svc-card">
+      <span class="num">03</span>
+      <div class="ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="11" r="2" stroke="currentColor" stroke-width="1.8"/></svg>
+      </div>
+      <h3>Water Heater Install</h3>
+      <p>Tank, tankless, hybrid. Removed, installed, hauled — usually same day.</p>
+    </div>
+    <div class="svc-card">
+      <span class="num">04</span>
+      <div class="ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12h6l3-7 3 14 3-7h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Sewer Line Repair</h3>
+      <p>Trenchless replacements when we can. Trenched only when we must.</p>
+    </div>
+    <div class="svc-card">
+      <span class="num">05</span>
+      <div class="ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 14h4" stroke="currentColor" stroke-width="1.8"/></svg>
+      </div>
+      <h3>Repipe &amp; Remodel</h3>
+      <p>PEX or copper. Kitchens, baths, basements — designer-friendly handoff.</p>
+    </div>
+    <div class="svc-card">
+      <span class="num">06</span>
+      <div class="ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Fixture Replacement</h3>
+      <p>Toilets, faucets, garbage disposals. Bring the part — or let us source.</p>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <h2>How a service call actually goes.</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="n">— Step 01</div>
+      <h4>You call or text</h4>
+      <p>Real human answers. We give you a 90-minute arrival window, not a 4-hour one.</p>
+    </div>
+    <div class="step">
+      <div class="n">— Step 02</div>
+      <h4>Diagnose &amp; quote</h4>
+      <p>Tech inspects, walks you through the fix, hands you a flat-rate quote.</p>
+    </div>
+    <div class="step">
+      <div class="n">— Step 03</div>
+      <h4>Work the work</h4>
+      <p>Drop cloths down. Boots covered. Old parts shown to you before disposal.</p>
+    </div>
+    <div class="step">
+      <div class="n">— Step 04</div>
+      <h4>Clean &amp; warranty</h4>
+      <p>Workspace cleaner than when we arrived. 2-year warranty on labor, every job.</p>
+    </div>
+  </div>
+</section>
+
+<section class="form-sec">
+  <div class="form-card">
+    <div class="copy">
+      <p class="eye">Free estimate</p>
+      <h3>What can we look at?</h3>
+      <p>Send a few details — we'll call to confirm a window within an hour during business hours.</p>
+      <div class="stats">
+        <div><span class="n">9,800+</span><span class="l">Homes served</span></div>
+        <div><span class="n">61</span><span class="l">Years in family</span></div>
+        <div><span class="n">4.9★</span><span class="l">Google · BBB A+</span></div>
+      </div>
+    </div>
+    <form class="f-grid" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ Sent — call within 1 hr'">
+      <div><label>Your name</label><input placeholder="First, last" required></div>
+      <div><label>Phone</label><input placeholder="(555) 555-5555" required></div>
+      <div><label>Type of work</label>
+        <select><option>Emergency leak</option><option>Drain cleaning</option><option>Water heater</option><option>Sewer / main</option><option>Remodel</option><option>Not sure yet</option></select>
+      </div>
+      <div><label>Describe the issue</label><textarea rows="3" placeholder="Slow drain, weird smell, etc."></textarea></div>
+      <button class="btn btn-pri" type="submit">Send to dispatch →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="logo">Rivet &amp; Pipe Plumbing Co.</span>
+  <span>1742 Hawthorne Blvd · Portland OR · © 2026</span>
+</footer>
+
+</body>
+</html>

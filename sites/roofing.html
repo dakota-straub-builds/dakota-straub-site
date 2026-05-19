@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ironcap — Roofing &amp; Exterior</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--slate:#1f2937;--slate-2:#374151;--rust:#b45309;--rust-2:#d97706;--terra:#dc2626;--bone:#f5f1e8;--ink:#111827;--mute:#6b7280;--line:#e5e0d3}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bone);color:var(--ink);font:14px/1.55 "Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.brick{font-family:"Bricolage Grotesque",sans-serif;letter-spacing:-.03em}
+a{color:inherit;text-decoration:none}
+
+/* top */
+.bar{background:var(--ink);color:var(--bone);font-size:11.5px;padding:8px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.bar .left{display:flex;gap:18px;align-items:center}
+.bar .badge{padding:2px 8px;background:var(--rust);font-weight:600;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase}
+
+/* nav */
+.nav{padding:16px 22px;display:flex;align-items:center;justify-content:space-between;background:var(--bone);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.logo .roof{width:32px;height:24px;position:relative}
+.logo .roof::before{content:"";position:absolute;inset:0;background:var(--ink);clip-path:polygon(50% 0,100% 70%,100% 100%,0 100%,0 70%)}
+.logo .roof::after{content:"";position:absolute;left:50%;top:8px;width:3px;height:8px;background:var(--rust);transform:translateX(-50%)}
+.nav-links{display:flex;gap:22px;font-size:13px;color:var(--slate);font-weight:500}
+.nav-cta{background:var(--ink);color:var(--bone);padding:10px 18px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px}
+
+/* hero */
+.hero{padding:56px 22px 44px;background:
+  linear-gradient(180deg,var(--bone) 0%,#ebe5d4 100%);
+  position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60px;background:repeating-linear-gradient(45deg,var(--ink) 0 8px,transparent 8px 16px);opacity:.06}
+.hero-grid{display:grid;grid-template-columns:1.2fr .9fr;gap:34px;align-items:center;position:relative;z-index:2}
+.tag{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;background:var(--ink);color:var(--bone);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rust);box-shadow:0 0 8px var(--rust)}
+.hero h1{font-size:clamp(40px,8vw,80px);line-height:.92;font-weight:800;text-wrap:balance}
+.hero h1 em{font-style:italic;color:var(--rust);font-weight:400;font-family:"Bricolage Grotesque",sans-serif}
+.hero p.sub{margin-top:18px;color:var(--slate);font-size:15px;max-width:46ch;line-height:1.55}
+.hero-cta{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:14px 22px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:0;font-family:inherit}
+.btn-pri{background:var(--rust);color:var(--bone)}
+.btn-pri:hover{background:var(--rust-2)}
+.btn-out{background:transparent;border:2px solid var(--ink);color:var(--ink)}
+
+/* hero side card */
+.inspect{background:var(--ink);color:var(--bone);padding:24px;border-radius:0;position:relative;overflow:hidden;border-top:4px solid var(--rust)}
+.inspect h4{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rust-2);margin-bottom:10px}
+.inspect .big{font-family:"Bricolage Grotesque",sans-serif;font-size:32px;line-height:1;letter-spacing:-.02em;font-weight:600;margin-bottom:14px}
+.inspect p{font-size:13px;color:rgba(245,241,232,.7);line-height:1.5;margin-bottom:16px}
+.inspect .price-now{display:flex;align-items:baseline;gap:8px;margin-bottom:16px}
+.inspect .price-now s{color:var(--mute);font-size:14px}
+.inspect .price-now b{font-size:30px;font-weight:800;color:var(--rust-2)}
+.inspect .price-now span{font-size:13px;color:var(--bone)}
+.inspect button{width:100%;padding:13px;background:var(--rust);color:var(--bone);border:0;font:inherit;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:12.5px;cursor:pointer}
+
+/* trust strip */
+.trust{padding:24px 22px;background:var(--ink);color:var(--bone);display:flex;justify-content:center;flex-wrap:wrap;gap:32px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(245,241,232,.7);font-weight:500;align-items:center}
+.trust span{display:inline-flex;align-items:center;gap:8px}
+
+/* services as imposing blocks */
+.section{padding:56px 22px}
+.eye{font-size:11px;color:var(--rust);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;font-weight:700}
+.section h2{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(30px,5vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:700;margin-bottom:32px;max-width:16ch}
+
+.svc-stack{display:flex;flex-direction:column;border-top:2px solid var(--ink)}
+.svc-row{display:grid;grid-template-columns:120px 1fr auto;gap:20px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);transition:padding .25s,background .25s}
+.svc-row:hover{padding-left:12px;padding-right:12px;background:rgba(180,83,9,.04)}
+.svc-row .num{font-family:"Bricolage Grotesque",sans-serif;font-style:italic;font-size:38px;color:var(--rust);font-weight:600;line-height:1}
+.svc-row h3{font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:600;letter-spacing:-.02em;margin-bottom:4px}
+.svc-row p{font-size:13.5px;color:var(--mute);line-height:1.5;max-width:55ch}
+.svc-row .price{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;color:var(--ink);font-size:15px;white-space:nowrap}
+
+/* materials */
+.mats{padding:0 22px}
+.mats-card{background:var(--ink);color:var(--bone);padding:36px 28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;position:relative;overflow:hidden}
+.mats-card::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 50% 100%,rgba(180,83,9,.25),transparent 60%)}
+.mats-card > div{position:relative;z-index:2;padding:16px;border:1px solid rgba(245,241,232,.1);background:rgba(245,241,232,.03)}
+.mats-card h4{font-family:"Bricolage Grotesque",sans-serif;font-size:20px;margin-bottom:6px;font-weight:600}
+.mats-card p{font-size:13px;color:rgba(245,241,232,.6);margin-bottom:14px}
+.mats-card .tags{display:flex;gap:6px;flex-wrap:wrap}
+.mats-card .tags span{font-size:10.5px;padding:3px 8px;border:1px solid rgba(245,241,232,.2);color:rgba(245,241,232,.7);letter-spacing:.04em;text-transform:uppercase}
+
+/* form */
+.form-sec{padding:56px 22px}
+.form-card{background:var(--ink);color:var(--bone);padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start;position:relative;overflow:hidden}
+.form-card::after{content:"";position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,var(--rust),transparent 70%);opacity:.5}
+.form-card h3{font-family:"Bricolage Grotesque",sans-serif;font-size:34px;line-height:.95;font-weight:700;margin-bottom:14px;letter-spacing:-.025em;position:relative;z-index:1}
+.form-card .copy p{color:rgba(245,241,232,.7);font-size:13.5px;margin-bottom:14px;position:relative;z-index:1}
+.form-card .copy ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:18px;position:relative;z-index:1}
+.form-card .copy li{font-size:13px;color:rgba(245,241,232,.85)}
+.form-card .copy li::before{content:"✓ ";color:var(--rust-2);font-weight:700}
+.f-grid{display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
+.f-grid input,.f-grid select,.f-grid textarea{padding:13px 14px;border:1px solid rgba(245,241,232,.15);background:rgba(245,241,232,.05);color:var(--bone);font:inherit}
+.f-grid input::placeholder,.f-grid textarea::placeholder{color:rgba(245,241,232,.4)}
+.f-grid input:focus,.f-grid select:focus,.f-grid textarea:focus{outline:2px solid var(--rust);outline-offset:1px}
+.f-grid select option{color:var(--ink)}
+
+footer{padding:32px 22px;color:var(--mute);font-size:12px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px}
+
+@media(max-width:680px){
+  .hero-grid,.form-card,.mats-card{grid-template-columns:1fr}
+  .svc-row{grid-template-columns:60px 1fr;gap:12px}
+  .svc-row .price{grid-column:2}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="left">
+    <span><span class="badge">Storm response</span> Free post-storm inspection · 48hr turnaround</span>
+  </div>
+  <span>(555) 990-ROOF</span>
+</div>
+
+<nav class="nav">
+  <a class="logo">
+    <span class="roof"></span>
+    Ironcap Roofing
+  </a>
+  <div class="nav-links"><a>Roofing</a><a>Siding</a><a>Gutters</a><a>Storm Damage</a><a>Reviews</a></div>
+  <a class="nav-cta">Free Inspection →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <span class="tag">Family-owned · GAF Master Elite</span>
+      <h1 class="brick">Built to outlast the <em>next storm.</em></h1>
+      <p class="sub">Roofing, siding, and gutters across the Midwest. We pull permits, work with your insurer, and finish on the day we said we would. 25-year workmanship warranty on every job.</p>
+      <div class="hero-cta">
+        <button class="btn btn-pri">Schedule inspection
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8m0 0L7 3m3 3L7 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button class="btn btn-out">See past jobs</button>
+      </div>
+    </div>
+
+    <aside class="inspect">
+      <h4>// LIMITED — JUNE ONLY</h4>
+      <p class="big">$0 storm-damage inspection.</p>
+      <p>30-point drone &amp; ladder report. We meet your adjuster on-site at no charge if a claim is approved.</p>
+      <div class="price-now"><s>$295</s> <b>$0</b><span>through June 30</span></div>
+      <button>Reserve a slot →</button>
+    </aside>
+  </div>
+</section>
+
+<div class="trust">
+  <span>★ GAF Master Elite</span>
+  <span>★ Owens Corning Platinum</span>
+  <span>★ 4.9 Google · 800+ reviews</span>
+  <span>★ A+ BBB</span>
+</div>
+
+<section class="section">
+  <p class="eye">— What we do</p>
+  <h2 class="brick">Roof up. Siding straight. Gutters clear.</h2>
+  <div class="svc-stack">
+    <div class="svc-row">
+      <span class="num">01</span>
+      <div>
+        <h3>Full Roof Replacement</h3>
+        <p>Asphalt, metal, synthetic slate. Tear-off &amp; haul included. Permit, dump, decking — all in.</p>
+      </div>
+      <span class="price">$8,400+</span>
+    </div>
+    <div class="svc-row">
+      <span class="num">02</span>
+      <div>
+        <h3>Storm &amp; Hail Repair</h3>
+        <p>Insurance claims, supplements, depreciation recovery. We hold the line so you don't have to.</p>
+      </div>
+      <span class="price">CLAIM-BASED</span>
+    </div>
+    <div class="svc-row">
+      <span class="num">03</span>
+      <div>
+        <h3>Siding (Vinyl, LP, Fiber Cement)</h3>
+        <p>James Hardie certified. Re-wraps, full replacements, color-matched touch-ups.</p>
+      </div>
+      <span class="price">$12k+</span>
+    </div>
+    <div class="svc-row">
+      <span class="num">04</span>
+      <div>
+        <h3>Seamless Gutters &amp; Guards</h3>
+        <p>5" or 6" K-style, formed on-site. Leaf guards optional. Down-spouts re-pitched to drain right.</p>
+      </div>
+      <span class="price">$8 / ft</span>
+    </div>
+    <div class="svc-row">
+      <span class="num">05</span>
+      <div>
+        <h3>Skylights &amp; Vents</h3>
+        <p>Velux-certified. Solar-powered fresh-air units, leak-proof flashing kits, retrofits.</p>
+      </div>
+      <span class="price">$1,400+</span>
+    </div>
+  </div>
+</section>
+
+<div class="mats">
+  <div class="mats-card">
+    <div>
+      <h4>Asphalt Architectural</h4>
+      <p>30-year shingles in 8 stocked colors. Our most-installed roof — durable, affordable, fast.</p>
+      <div class="tags"><span>30-yr</span><span>2-day install</span><span>$$</span></div>
+    </div>
+    <div>
+      <h4>Standing Seam Metal</h4>
+      <p>Snap-lock or mechanical lock. 24-ga steel or aluminum. Pays for itself in resale.</p>
+      <div class="tags"><span>50-yr</span><span>4-day install</span><span>$$$$</span></div>
+    </div>
+    <div>
+      <h4>Synthetic Slate</h4>
+      <p>Looks like real slate, half the weight, a quarter the price. DaVinci &amp; Brava.</p>
+      <div class="tags"><span>50-yr</span><span>5-day install</span><span>$$$</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="form-sec">
+  <div class="form-card">
+    <div class="copy">
+      <p class="eye" style="color:var(--rust-2)">— Free inspection</p>
+      <h3 class="brick">We'll be on the roof in 48 hours.</h3>
+      <p>Tell us the address &amp; what you're seeing. We send a master estimator (not a sales rep) within two business days.</p>
+      <ul>
+        <li>Drone &amp; ladder inspection</li>
+        <li>Written report, same day</li>
+        <li>We meet your adjuster if needed</li>
+        <li>No-pressure, no-call follow-up</li>
+      </ul>
+    </div>
+    <form class="f-grid" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ Scheduled — see email'">
+      <input placeholder="Full name" required>
+      <input placeholder="Phone or email" required>
+      <input placeholder="Property address">
+      <select>
+        <option>Reason for inspection…</option>
+        <option>Recent storm damage</option>
+        <option>Visible leak inside</option>
+        <option>Selling / pre-listing inspection</option>
+        <option>Roof is just old</option>
+        <option>Siding or gutters only</option>
+      </select>
+      <textarea rows="2" placeholder="Anything we should know? (optional)"></textarea>
+      <button class="btn btn-pri" type="submit">Schedule inspection →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>Ironcap Roofing &amp; Exterior · Lic #RC-50281</span>
+  <span>Kansas City · St. Louis · Springfield · © 2026</span>
+</footer>
+
+</body>
+</html>

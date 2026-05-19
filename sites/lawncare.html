@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evergreen — Lawn Care &amp; Landscape</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter+Tight:wght@400;500;600&display=swap">
+<style>
+:root{--green:#0f5132;--green-2:#1a7a47;--lime:#c4f054;--cream:#f4f1e8;--ink:#0c1d13;--mute:#5b6f60}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--cream);color:var(--ink);font:14px/1.55 "Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.serif{font-family:"DM Serif Display",serif;font-weight:400;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(244,241,232,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,81,50,.12);padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:16px}
+.logo svg{color:var(--green)}
+.nav-links{display:flex;gap:22px;font-size:13px;color:var(--mute)}
+.nav-cta{background:var(--green);color:var(--cream);padding:8px 14px;border-radius:999px;font-size:12.5px;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+
+/* hero */
+.hero{position:relative;padding:54px 22px 40px;overflow:hidden;background:
+  radial-gradient(60% 40% at 80% 0%, rgba(196,240,84,.5), transparent 70%),
+  linear-gradient(180deg,var(--cream),#ebe6d5)}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:rgba(15,81,50,.08);color:var(--green);font-size:11.5px;font-weight:500;margin-bottom:18px}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+.hero h1{font-size:clamp(34px,7vw,68px);line-height:.95;letter-spacing:-.03em;max-width:9ch;text-wrap:balance}
+.hero h1 em{font-style:italic;color:var(--green)}
+.hero .leaf{position:absolute;top:60px;right:-30px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 40% 40%,var(--lime),var(--green));filter:blur(2px);opacity:.85;transform:rotate(-20deg)}
+.hero p.sub{margin-top:18px;color:var(--mute);font-size:14.5px;max-width:42ch}
+.hero-cta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:11px 18px;border-radius:999px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:0}
+.btn-pri{background:var(--green);color:var(--cream)}
+.btn-ghost{background:transparent;border:1px solid rgba(15,81,50,.25);color:var(--ink)}
+
+.stats{display:flex;gap:22px;margin-top:36px;border-top:1px solid rgba(15,81,50,.15);padding-top:20px;flex-wrap:wrap}
+.stats div{display:flex;flex-direction:column}
+.stats .n{font-family:"DM Serif Display",serif;font-size:28px;color:var(--green)}
+.stats .l{font-size:11px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase}
+
+/* services */
+.section{padding:48px 22px}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:500;margin-bottom:10px}
+.section h2{font-family:"DM Serif Display",serif;font-size:clamp(28px,4.4vw,42px);line-height:1;letter-spacing:-.02em;margin-bottom:24px;max-width:18ch}
+
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.svc{background:#fff;border-radius:18px;padding:20px;border:1px solid rgba(15,81,50,.08);transition:transform .2s,box-shadow .2s}
+.svc:hover{transform:translateY(-3px);box-shadow:0 12px 28px -16px rgba(15,81,50,.3)}
+.svc .ico{width:40px;height:40px;border-radius:50%;background:var(--lime);display:grid;place-items:center;margin-bottom:14px;color:var(--green)}
+.svc h3{font-size:16px;font-weight:600;margin-bottom:6px}
+.svc p{font-size:13px;color:var(--mute);line-height:1.5}
+.svc .price{margin-top:14px;font-size:13px;color:var(--green);font-weight:500}
+
+/* big quote */
+.quote-block{background:var(--green);color:var(--cream);border-radius:24px;padding:36px 28px;margin:0 22px;position:relative;overflow:hidden}
+.quote-block::after{content:"";position:absolute;right:-40px;bottom:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,var(--lime),transparent 70%);opacity:.4}
+.quote-block .qbig{font-family:"DM Serif Display",serif;font-size:clamp(22px,3vw,30px);line-height:1.15;letter-spacing:-.01em}
+.quote-block .qmeta{margin-top:16px;font-size:13px;opacity:.8}
+
+/* booking */
+.booking{padding:48px 22px;background:linear-gradient(180deg,transparent,rgba(196,240,84,.25))}
+.book-card{background:#fff;border-radius:24px;padding:28px;border:1px solid rgba(15,81,50,.08);display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.book-card h3{font-family:"DM Serif Display",serif;font-size:30px;line-height:1;letter-spacing:-.02em;margin-bottom:10px}
+.book-card p{color:var(--mute);font-size:13.5px;margin-bottom:18px}
+.book-form{display:flex;flex-direction:column;gap:10px}
+.book-form input,.book-form select{padding:13px 14px;border-radius:12px;border:1px solid rgba(15,81,50,.15);background:var(--cream);font:inherit;color:inherit}
+.book-form input:focus,.book-form select:focus{outline:2px solid var(--green);outline-offset:1px}
+
+footer{padding:36px 22px;color:var(--mute);font-size:12px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(15,81,50,.12);flex-wrap:wrap;gap:12px}
+footer .logo{font-size:14px;color:var(--ink)}
+
+@media(max-width:560px){
+  .book-card{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="#">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 22c0-7 5-11 10-11 0 6-3 11-10 11zM12 22c0-7-5-11-10-11 0 6 3 11 10 11zM12 22V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    Evergreen
+  </a>
+  <div class="nav-links">
+    <a>Services</a><a>About</a><a>Reviews</a><a>Contact</a>
+  </div>
+  <a class="nav-cta">
+    Free quote
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7m0 0L6 2.5M9 5.5L6 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+  </a>
+</nav>
+
+<section class="hero">
+  <div class="leaf"></div>
+  <span class="tag">Family-owned · est. 2014</span>
+  <h1 class="serif">A lawn worth <em>looking</em> at.</h1>
+  <p class="sub">Weekly mowing, organic fertilization, and full landscape design across the greater Twin Cities. Reliable crews. No long contracts.</p>
+  <div class="hero-cta">
+    <button class="btn btn-pri">Get free estimate
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7m0 0L6 2.5M9 5.5L6 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <button class="btn btn-ghost">View pricing</button>
+  </div>
+  <div class="stats">
+    <div><span class="n">1,400+</span><span class="l">Yards mowed monthly</span></div>
+    <div><span class="n">4.9★</span><span class="l">Google rating</span></div>
+    <div><span class="n">100%</span><span class="l">Satisfaction guaranteed</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">— What we do</div>
+  <h2>Services for every season of your yard.</h2>
+  <div class="services">
+    <div class="svc">
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 18l4-12 5 12 5-9 4 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>Weekly Mowing</h3>
+      <p>Sharpened blades, edged borders, debris cleared. Same crew, same day, every week.</p>
+      <div class="price">from $48 / visit</div>
+    </div>
+    <div class="svc">
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h3>Fertilization</h3>
+      <p>6-step organic program. Soil tested twice a year. Pet- and kid-safe by default.</p>
+      <div class="price">from $89 / treatment</div>
+    </div>
+    <div class="svc">
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v6m0 0c-3 0-5 2-5 5s2 5 5 5 5-2 5-5-2-5-5-5zM12 18v4M5 22h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h3>Landscape Design</h3>
+      <p>Beds, hardscape, lighting. Drawn up by a real designer — built by people who'll plant it.</p>
+      <div class="price">free consult</div>
+    </div>
+    <div class="svc">
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 19l3-8 4 6 3-10 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>Leaf &amp; Cleanup</h3>
+      <p>Spring wake-up and fall blowouts. Mulched on-site, hauled if you want.</p>
+      <div class="price">from $145</div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-block">
+  <p class="qbig">"They turned a patch of crab grass into the best lawn on the block. Three neighbors switched after one summer."</p>
+  <p class="qmeta">— Marta R., Edina · customer since 2021</p>
+</div>
+
+<section class="booking">
+  <div class="book-card">
+    <div>
+      <div class="eyebrow">— Free estimate</div>
+      <h3 class="serif">Tell us about your yard.</h3>
+      <p>Reply within one business day. No phone calls unless you ask for one.</p>
+      <p style="font-size:12px;color:var(--green)">📍 Serving Minneapolis, St. Paul, &amp; suburbs</p>
+    </div>
+    <form class="book-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ Thanks — we\u2019ll be in touch'">
+      <input placeholder="Your name" required>
+      <input placeholder="Email or phone" required>
+      <select>
+        <option>Service interested in…</option>
+        <option>Weekly mowing</option>
+        <option>Fertilization</option>
+        <option>Landscape design</option>
+        <option>Seasonal cleanup</option>
+      </select>
+      <button class="btn btn-pri" type="submit">Request estimate</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22c0-7 5-11 10-11 0 6-3 11-10 11zM12 22c0-7-5-11-10-11 0 6 3 11 10 11zM12 22V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    Evergreen Lawn &amp; Landscape
+  </div>
+  <span>© 2026 · (612) 555-0144 · hello@evergreen.co</span>
+</footer>
+
+</body>
+</html>

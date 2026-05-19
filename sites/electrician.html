@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Voltline — Electricians, on call.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#0b0b0c;--bg-2:#161618;--volt:#facc15;--volt-2:#fde047;--white:#fafafa;--mute:#a1a1aa;--line:#27272a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--white);font:14px/1.5 "Archivo",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"IBM Plex Mono",monospace}
+a{color:inherit;text-decoration:none}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(11,11,12,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:16px;letter-spacing:-.02em}
+.logo .bolt{width:26px;height:26px;background:var(--volt);color:var(--bg);display:grid;place-items:center;clip-path:polygon(50% 0,100% 50%,55% 50%,80% 100%,0 50%,50% 50%);font-weight:900}
+.logo .bolt svg{width:16px;height:16px}
+.nav-links{display:flex;gap:20px;font-size:13px;color:var(--mute);font-weight:500}
+.nav-cta{background:var(--volt);color:var(--bg);padding:10px 16px;border-radius:0;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+
+/* hero */
+.hero{padding:60px 22px 48px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(250,204,21,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(250,204,21,.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 0%,transparent 100%)}
+.hero::after{content:"";position:absolute;top:-100px;right:-80px;width:480px;height:480px;background:radial-gradient(circle,rgba(250,204,21,.25),transparent 60%);filter:blur(20px)}
+.hero-in{position:relative;z-index:2;max-width:780px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:5px 11px;background:var(--volt);color:var(--bg);font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);margin-bottom:22px}
+.tag .live{width:6px;height:6px;border-radius:50%;background:#dc2626;box-shadow:0 0 8px #dc2626}
+.hero h1{font-size:clamp(44px,9vw,96px);line-height:.88;letter-spacing:-.045em;font-weight:900;text-transform:uppercase}
+.hero h1 .y{color:var(--volt);position:relative;display:inline-block}
+.hero h1 .y::after{content:"";position:absolute;bottom:6px;left:0;right:0;height:6px;background:var(--bg);opacity:.4}
+.hero p.sub{margin-top:22px;color:var(--mute);font-size:15px;max-width:50ch;line-height:1.55}
+.hero-cta{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:13px 22px;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:0;font-family:inherit;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.btn-pri{background:var(--volt);color:var(--bg)}
+.btn-ghost{background:var(--bg-2);color:var(--white);border:1px solid var(--line)}
+
+.live-strip{margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.live-cell{padding:18px 16px;border-right:1px solid var(--line)}
+.live-cell:last-child{border-right:0}
+.live-cell .l{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+.live-cell .n{font-size:24px;font-weight:900;letter-spacing:-.02em;margin-top:4px}
+.live-cell .n.v{color:var(--volt)}
+
+/* services */
+.section{padding:56px 22px}
+.eye{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--volt);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.section h2{font-size:clamp(28px,4.8vw,48px);line-height:.95;letter-spacing:-.03em;font-weight:900;text-transform:uppercase;margin-bottom:32px;max-width:18ch}
+
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:1px solid var(--line)}
+.svc{padding:24px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;transition:background .25s;display:flex;flex-direction:column;gap:10px;min-height:200px}
+.svc:hover{background:var(--bg-2)}
+.svc .num{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--volt);letter-spacing:.06em}
+.svc h3{font-size:18px;font-weight:800;letter-spacing:-.015em;text-transform:uppercase}
+.svc p{font-size:13px;color:var(--mute);line-height:1.55;flex:1}
+.svc .arr{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--volt);align-self:flex-start}
+
+/* big stat */
+.big-stat{padding:48px 22px;background:var(--volt);color:var(--bg);text-align:center;position:relative;overflow:hidden}
+.big-stat::before,.big-stat::after{content:"";position:absolute;top:0;bottom:0;width:60px;background:repeating-linear-gradient(45deg,var(--bg) 0 12px,transparent 12px 24px);opacity:.15}
+.big-stat::before{left:0}.big-stat::after{right:0}
+.big-stat .n{font-size:clamp(70px,12vw,130px);line-height:.9;font-weight:900;letter-spacing:-.05em;font-family:"Archivo",sans-serif}
+.big-stat p{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:8px}
+
+/* emergencies */
+.emergency{padding:52px 22px}
+.em-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.em-card{background:var(--bg-2);border:1px solid var(--line);padding:24px;position:relative}
+.em-card h4{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--volt);margin-bottom:10px}
+.em-card p{font-size:14px;color:var(--white);font-weight:600;line-height:1.4;margin-bottom:8px}
+.em-card span{font-size:12.5px;color:var(--mute)}
+
+/* book */
+.book{padding:56px 22px;background:repeating-linear-gradient(45deg,var(--bg),var(--bg) 30px,var(--bg-2) 30px,var(--bg-2) 31px)}
+.book-card{background:var(--bg-2);border:2px solid var(--volt);padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.book-card h3{font-size:30px;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;line-height:.95;margin-bottom:10px}
+.book-card .copy p{color:var(--mute);font-size:13.5px;margin-bottom:6px}
+.book-card .copy .pricing{margin-top:18px;font-family:"IBM Plex Mono",monospace;font-size:13px;display:flex;flex-direction:column;gap:4px}
+.book-card .copy .pricing div{display:flex;justify-content:space-between;padding-bottom:4px;border-bottom:1px dashed var(--line)}
+.book-card .copy .pricing div span:last-child{color:var(--volt)}
+.f{display:flex;flex-direction:column;gap:10px}
+.f input,.f select{padding:13px 14px;background:var(--bg);border:1px solid var(--line);color:var(--white);font:inherit}
+.f input:focus,.f select:focus{outline:2px solid var(--volt);outline-offset:1px}
+
+footer{padding:32px 22px;color:var(--mute);font-size:12px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px}
+
+@media(max-width:680px){
+  .book-card,.em-row{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo">
+    <span class="bolt">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M9 1L3 9h4l-1 6 6-8H8l1-6z" fill="currentColor"/></svg>
+    </span>
+    VOLTLINE
+  </a>
+  <div class="nav-links"><a>Residential</a><a>Commercial</a><a>EV chargers</a><a>Service</a></div>
+  <a class="nav-cta">Dispatch ⚡</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-in">
+    <span class="tag"><span class="live"></span>14 techs on shift now</span>
+    <h1>POWER<br>IS A <span class="y">PROMISE.</span><br>WE KEEP IT.</h1>
+    <p class="sub">Master electricians serving Tampa &amp; St. Pete. From a flickering outlet to a 400-amp service upgrade — we show up, we permit it, we leave it cleaner than we found it.</p>
+    <div class="hero-cta">
+      <button class="btn btn-pri">Get a quote ⚡</button>
+      <button class="btn btn-ghost">View pricing →</button>
+    </div>
+  </div>
+  <div class="live-strip">
+    <div class="live-cell"><div class="l">// avg response</div><div class="n v">31<span style="font-size:14px">min</span></div></div>
+    <div class="live-cell"><div class="l">// jobs / week</div><div class="n">280+</div></div>
+    <div class="live-cell"><div class="l">// permits pulled</div><div class="n">4,810</div></div>
+    <div class="live-cell"><div class="l">// rating</div><div class="n v">4.97★</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eye">// SERVICES — RES &amp; COMM</div>
+  <h2>If it's wired, we work on it.</h2>
+  <div class="svc-grid">
+    <div class="svc">
+      <span class="num">// 01</span>
+      <h3>Panel Upgrades</h3>
+      <p>200A / 400A service upgrades. Permits pulled, inspection scheduled, financing available.</p>
+      <span class="arr">FROM $2,400 →</span>
+    </div>
+    <div class="svc">
+      <span class="num">// 02</span>
+      <h3>EV Charger Install</h3>
+      <p>Tesla, J1772, NEMA 14-50. Most installs done same-day with $500 utility rebate.</p>
+      <span class="arr">FROM $750 →</span>
+    </div>
+    <div class="svc">
+      <span class="num">// 03</span>
+      <h3>Whole-Home Rewires</h3>
+      <p>Knob &amp; tube? Aluminum? We pull the old, drop the new, patch the drywall.</p>
+      <span class="arr">FREE QUOTE →</span>
+    </div>
+    <div class="svc">
+      <span class="num">// 04</span>
+      <h3>Generator Hookup</h3>
+      <p>Standby and portable. ATS install, transfer switches, permit included.</p>
+      <span class="arr">FROM $1,150 →</span>
+    </div>
+    <div class="svc">
+      <span class="num">// 05</span>
+      <h3>Outlet &amp; Switch</h3>
+      <p>Smart switches, USB outlets, GFCI compliance. Flat $89 per outlet, $19 each additional.</p>
+      <span class="arr">$89 / OUTLET →</span>
+    </div>
+    <div class="svc">
+      <span class="num">// 06</span>
+      <h3>Lighting Design</h3>
+      <p>Recessed, accent, landscape, smart. We spec it &amp; install it. Sample fixtures on truck.</p>
+      <span class="arr">CONSULT FREE →</span>
+    </div>
+  </div>
+</section>
+
+<section class="big-stat">
+  <div class="n">31<span style="font-size:.5em">MIN</span></div>
+  <p>Average dispatch time, 6am to midnight, every day</p>
+</section>
+
+<section class="emergency">
+  <div class="eye">// EMERGENCY CALLOUT</div>
+  <h2>Stuff that should not wait.</h2>
+  <div class="em-row">
+    <div class="em-card">
+      <h4>// 911 — call now</h4>
+      <p>Burning smell from outlets or panel</p>
+      <span>Cut power at main, call us, leave the house if needed.</span>
+    </div>
+    <div class="em-card">
+      <h4>// Same day</h4>
+      <p>Half the house has no power</p>
+      <span>Usually a tripped main lug or feeder issue. We can be there inside 90 min.</span>
+    </div>
+    <div class="em-card">
+      <h4>// Same day</h4>
+      <p>Sparking outlets or breakers</p>
+      <span>Stop using the circuit and call. Don't reset the breaker more than once.</span>
+    </div>
+    <div class="em-card">
+      <h4>// This week</h4>
+      <p>Lights dim when AC kicks on</p>
+      <span>Often a loose neutral at the meter — not life-threatening but worth fixing.</span>
+    </div>
+  </div>
+</section>
+
+<section class="book">
+  <div class="book-card">
+    <div class="copy">
+      <div class="eye">// SCHEDULE</div>
+      <h3>Book a tech.<br>Get the bolt.</h3>
+      <p>Same-day appointments still available today for service calls under 2 hours.</p>
+      <p style="color:var(--volt);font-weight:600">⚡ $0 dispatch fee through Friday</p>
+      <div class="pricing">
+        <div><span>Diagnostic visit</span><span>$0</span></div>
+        <div><span>Outlet replacement</span><span>$89</span></div>
+        <div><span>EV charger install</span><span>$750+</span></div>
+        <div><span>200A panel upgrade</span><span>$2,400+</span></div>
+      </div>
+    </div>
+    <form class="f" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ DISPATCHED'">
+      <input placeholder="Full name" required>
+      <input placeholder="Mobile · (555) 555-5555" required>
+      <input placeholder="Service address">
+      <select>
+        <option>Type of work…</option>
+        <option>Panel upgrade</option>
+        <option>EV charger</option>
+        <option>Outlet / switch</option>
+        <option>Lighting</option>
+        <option>Emergency / no power</option>
+      </select>
+      <button class="btn btn-pri" type="submit">DISPATCH NOW ⚡</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>VOLTLINE ELECTRIC · LIC #EC13007885</span>
+  <span>Tampa Bay · (555) 380-VOLT · © 2026</span>
+</footer>
+
+</body>
+</html>
