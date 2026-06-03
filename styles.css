@@ -994,3 +994,30 @@ section, header, footer { position: relative; z-index: 1; }
   object-fit: cover;
   display: block;
 }
+
+.nav-cta-dot-cal {
+  background: #818cf8;
+  box-shadow: 0 0 8px #818cf8;
+}
+.nav-cta-cal {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: var(--paper);
+}
+.nav-cta-cal:hover { background: #5b21b6; }
+
+.contact-cal {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 18px 28px;
+  background: var(--purple);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: clamp(15px, 1.7vw, 21px);
+  font-weight: 500;
+  border: 1px solid var(--purple);
+  transition: background .15s;
+}
+.contact-cal:hover { background: #5b21b6; }

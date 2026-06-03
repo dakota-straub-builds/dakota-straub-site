@@ -32,6 +32,10 @@
     <span class="nav-cta-dot"></span>
     Start a project
   </a>
+  <a href="https://calendly.com/dakota-spearcrestdigital/30min?month=2026-06" target="_blank" rel="noopener" class="nav-cta nav-cta-cal">
+    <span class="nav-cta-dot nav-cta-dot-cal"></span>
+    Book a call
+  </a>
 </header>
 
 <!-- ─── HERO ────────────────────────────────────────── -->
@@ -82,7 +86,6 @@
     </p>
 
     <!-- Live stats strip -->
-    <!-- Live stats strip -->
     <div class="live-strip">
       <div class="live-cell">
         <span class="mono live-label">// shipped</span>
@@ -127,8 +130,6 @@
     </div>
   </div>
 </section>
-
-
 
 <!-- ─── WORK ────────────────────────────────────────── -->
 <section id="work" class="work" data-screen-label="02 Work">
@@ -535,7 +536,6 @@
       ctx.fillStyle = i === 0 ? '#0f0f10' : '#2a2a2e';
       ctx.fillRect(seg.x * CELL + 1, seg.y * CELL + 1, CELL - 2, CELL - 2);
     });
-    // eyes on head
     const h = snake[0];
     ctx.fillStyle = '#f4ede0';
     if (dir.x === 1)  { ctx.fillRect(h.x*CELL+14, h.y*CELL+4,  3,3); ctx.fillRect(h.x*CELL+14, h.y*CELL+13, 3,3); }
@@ -619,7 +619,6 @@
     if (k==='r' && dir.x!==-1) next={x:1,y:0};
   });
 
-  // initial draw
   drawGrid();
   drawOverlay('// snake.exe');
 })();
@@ -637,6 +636,13 @@
     <a href="mailto:dakotastraub@outlook.com" class="contact-email">
       <span class="contact-bracket">[</span>
       dakotastraub@outlook.com
+      <span class="contact-bracket">]</span>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0L11 5m5 5l-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="https://calendly.com/dakota-spearcrestdigital/30min?month=2026-06" target="_blank" rel="noopener" class="contact-cal">
+      <span class="contact-bracket">[</span>
+      Book a 30-min call
       <span class="contact-bracket">]</span>
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0L11 5m5 5l-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -675,8 +681,6 @@
   </div>
   <div class="foot-mega" aria-hidden="true">Dakota&nbsp;Straub</div>
 </footer>
-
-
 
 <!-- React + Tweaks -->
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
