@@ -676,6 +676,116 @@
   <div class="foot-mega" aria-hidden="true">Dakota&nbsp;Straub</div>
 </footer>
 
+</footer>
+
+<!-- ─── PAPER AIRPLANE ──────────────────────────────── -->
+<canvas id="plane-canvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40;"></canvas>
+
+<script>
+(function() {
+  const canvas = document.getElementById('plane-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let progress = 0;
+  let looping = false;
+  let loopAngle = 0;
+  let loopX = 0, loopY = 0;
+
+  function getPos(p) {
+    const x = -80 + (W + 160) * p;
+    const y = H * 0.3 + Math.sin(p * Math.PI * 2.5) * H * 0.18;
+    return { x, y };
+  }
+
+  function getAngle(p) {
+    const delta = 0.01;
+    const a = getPos(Math.max(0, p - delta));
+    const b = getPos(Math.min(1, p + delta));
+    return Math.atan2(b.y - a.y, b.x - a.x);
+  }
+
+  function drawPlane(x, y, angle) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.scale(1.4, 1.4);
+    ctx.strokeStyle = '#0f0f10';
+    ctx.fillStyle = 'rgba(244,237,224,0.92)';
+    ctx.lineWidth = 1.5;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(22, 0);
+    ctx.lineTo(-14, -10);
+    ctx.lineTo(-8, 0);
+    ctx.lineTo(-14, 10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(22, 0);
+    ctx.lineTo(-8, 0);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(109,40,217,0.25)';
+    for (let i = 1; i <= 4; i++) {
+      ctx.beginPath();
+      ctx.arc(-18 - i * 8, 0, 2 - i * 0.3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  window.addEventListener('scroll', () => {
+    if (looping) return;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  });
+
+  canvas.style.pointerEvents = 'auto';
+  canvas.addEventListener('click', (e) => {
+    if (looping) return;
+    const pos = getPos(progress);
+    const dx = e.clientX - pos.x;
+    const dy = e.clientY - pos.y;
+    if (Math.sqrt(dx*dx + dy*dy) < 60) {
+      looping = true;
+      loopAngle = 0;
+      loopX = pos.x;
+      loopY = pos.y;
+    }
+  });
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    if (looping) {
+      loopAngle += 0.09;
+      const radius = 38;
+      const x = loopX + Math.cos(loopAngle - Math.PI / 2) * radius;
+      const y = loopY + Math.sin(loopAngle - Math.PI / 2) * radius;
+      drawPlane(x, y, loopAngle + Math.PI / 2);
+      if (loopAngle >= Math.PI * 2) { looping = false; loopAngle = 0; }
+    } else {
+      const pos = getPos(progress);
+      drawPlane(pos.x, pos.y, getAngle(progress));
+    }
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
+</script>
+
+<!-- React + Tweaks -->
+
+
 <!-- React + Tweaks -->
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
